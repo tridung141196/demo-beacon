@@ -2,48 +2,39 @@
 
 ## Tổng quan
 
-Beacons sử dụng công nghệ BLE-[Bluetooth Low Energy](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) ( còn được gọi là Bluetooth Smart). BLE sử dụng giao thức khác Classic Bluetooth, và không tương thích ngược. BLE sử dụng cùng băng tần 2.4GHz.
+Beacons sử dụng công nghệ BLE-[Bluetooth Low Energy](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) ( còn được gọi là Bluetooth Smart), với ưu điểm nổi bậc là siêu tiết kiệm năng lượng, điều này cho phép các thiết bị Beacons **hoạt động liên tục từ 6 tháng đến 1 năm chỉ với một viên pin nhỏ**. Khoảng cách truyền tín hiệu cũng lên đến 100m như Classic Bluetooth.
 
-Ưu thế lớn nhất của BLE là tiết kiệm năng lượng, điều này cho phép beacons truyền thông tin liên tục lên đến 2-3 năm chỉ với một viên pin nhỏ. Khoảng cách truyền BLE cũng lên đến 100m như Classic Bluetooth.
+Bên cạnh ưu điểm tiết kiệm năng lượng, các thiết bị Beacon có kích thướt ngày càng nhỏ ( chỉ bằng một viên pin CMOS) phù hợp với rất nhiều ứng dụng như:
 
-Hiện nay, có rất nhiều chuẩn Beacon như IBeacon của Apple, Eddystone của Google,... nhưng phổ biến nhất vẫn là 2 chuẩn IBeacon và Eddystone:
+- Giám sát chuyển động ( Indoor Location).
 
-**IBeacon**: là một chuẩn do Apple đưa ra được ứng dụng rộng rãi trong hệ thống định vị trong nhà (Indoor Location). Một s ứng dụng tiềm năng của IBeacon là một nhận biết vị trí, ngữ cảnh , cảm biến nhỏ không dây có thể xác định vị trí của người sử dụng trong một cửa hàng . iBeacons có thể gửi thông báo của các mặt hàng gần đó được bán hoặc những mặt hàng khách hàng có thể tìm kiếm , và nó có thể cho phép thanh toán tại các điểm bán hàng (POS) mà khách hàng không cần phải mở ví ra hoặc đưa thẻ của họ để thực hiện thanh toán . IBeacon hứa hẹn là một  đối thủ cạnh tranh của Near Field Communication (Công nghệ NFC ).
+- Quảng bá địa chỉ trang Web.
 
-**Eddystone**: đây là chuẩn Beacon do Google công bố nhằm cạnh tranh với IBeacon của Apple. Ngoài những tính năng tương tự như IBeacon, Eddystone còn một số tính năng hấp dẫn khác như:
-- Quảng bá địa chỉ URL thông quan Eddystone-URL.
+- Cung cấp thông tin của thiết bị ( nhiệt độ, điện áp,..) cho người dùng.
 
-- Cung cấp thông tin ( nhiệt độ, mức điện áp,...) của thiết bị thông qua Eddystone-TLM.
+- Và rất nhiều ứng dụng khác như: tìm vị trí xe trong bãi, thông tin sản phẩm và khuyến mãi trong cửa hàng, hướng dẫn di chuyển trong sân bay,...
 
-- Quảng bá định danh thiết bị (tương tự IBeacon) thông qua Eddystone-UID.
+## Quảng bá địa chỉ Web (Physical Web)
 
+Đây là một ứng dụng rất hay của Beacon giúp bạn có thể quảng bá địa chỉ URL mà bạn muốn. Khi mọi người đến gần thiết bị Beacon đều có thể nhận được địa chỉ URL của bạn.
 
-## HardWare
+![Demo Beacon](image/beacon1.jpg)
 
-Demo ứng dụng Beacon sử dụng phần cứng là module NRF51822-Beacon dựa trên chip NRF51822 của Nordic với các ưu điểm như: thiết kế nhỏ gọn chỉ bằng đồng xu, tiêu thụ năng lượng thấp ( có thể sử dụng 1,2 năm chỉ bằng một viên pin cmos)...
+## Cách sử dụng
 
-![Hardware](image/beacon_hardware.png)
+Để nhận được URL từ thiết bị Beacon, chúng ta cần các yếu tố sau:
 
-## App
+- Smartphone có hỗ trợ Bluetooth 4.0 trở lên ( hầu hết các smartphone hiện nay đều hỗ trợ)
 
-Để có thể quét được Beacon, chúng ta cần sử dụng một chiếc điện thoại có hỗ trợ Bluetooth 4.0 trở lên đồng thời cài đặt thêm một áp để quét đó là: *NRF Connect*
+- Phần mềm **PHYSICAL Web** hoặc các phần mềm có thể Scan được Beacon.
 
-![NRF Connect](image/beacon_app.png)
+### PHYSICAL Web
 
-## Image
+![Demo Beacon](image/beacon2.png)
 
-### Demo IBeacon
+Sau khi tiến hành cài đặt ứng dụng từ **CH Play**. Danh sách các URL từ các Beacon mà ứng dụng quét được sẽ hiện lên màn hình. Ngoài ra, ứng dụng còn thông báo cho người dùng ở phần **Notifications**
 
-![Demo IBeacon](image/ibeacon.png)
+Ngoài ra còn một cách để bạn nhận được URL từ các Beacon đó là thông qua trình duyệt Chrome trên smartphone.
 
-### Demo Eddystone URL
+Bạn tiến hành mở ứng dụng Google Chrome vào **Cài đặt** chọn **Privacy** , tiếp theo chọn **Physical Web**. Trong mục **Physical Web** bạn bật **On** và nhấp vào mục **SEE WHAT'S NEARBY** để quét.
 
-Demo ứng dụng beacon nhằm giúp người dùng dễ dàng truy cập địa chỉ URL.
-
-![Demo IBeacon](image/eddystone_url.png)
-
-### Demo Eddystone TLM
-
-Demo ứng dụng beacon nhằm kiểm soát điện áp và nhiệt độ của thiết bị phát Beacon.
-
-![Demo Eddystone TLM](image/eddystone_tlm.png)
